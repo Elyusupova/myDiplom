@@ -1,0 +1,106 @@
+{VERSION 6 0 "IBM INTEL NT" "6.0" }
+{USTYLETAB {CSTYLE "Maple Input" -1 0 "Courier" 1 10 0 0 128 1 0 0 0 
+0 1 0 0 0 0 1 }{CSTYLE "" -1 256 "" 0 1 0 0 255 1 0 0 0 0 0 0 0 0 0 1 
+}{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "" 0 1 0 0 0 0 0 0 0 0 0 0 
+0 0 0 1 }0 0 0 -1 -1 -1 0 0 0 0 0 0 -1 0 }}
+{SECT 0 {EXCHG {PARA 0 "" 0 "" {TEXT 256 269 "\302 \344\340\355\355
+\356\354 \364\340\351\353\345 \361\356\344\345\360\346\350\362\361\377
+ \362\345\352\361\362 \357\360\356\366\345\344\363\360\373 \342\373
+\367\350\361\353\345\355\350\377 \341\340\347\350\361\355\373\365 \342
+\345\352\362\356\360\356\342, \352\356\375\364\364\350\366\350\345\355
+\362\356\342 \313\377\354\345  \350 \361\350\354\342\356\353\356\342 \+
+\312\360\350\361\362\356\364\364\345\353\377 \356\362\361\367\345\362
+\355\356\351 \350 \340\352\362\363\340\353\374\355\356\351 \361\350
+\361\362\345\354 \352\356\356\360\344\350\355\340\362. \317\356\352
+\340 \342\356\347\354\356\346\355\373 \362\360\350 \362\350\357\340 \+
+\352\356\356\360\344\350\355\340\362: \344\345\352\340\360\362\356\342
+\373 (Cartesian),  \366\350\353\350\355\344\360\350\367\345\361\352
+\350\345 (Cylindrical) \350 \361\364\345\360\350\367\345\361\352\350
+\345 (Spherical)." }{TEXT -1 1 " " }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 22 "restart;\nwith(linalg):" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 4906 "Coordinates:=proc(coord1::name, coord2::name)\nglob
+al  X1,X2,X3,x1,x2,x3,Q1,Q2,Q3,q1,q2,q3,Rt,M_eE, H1,H2,H3,h1,h2,h3,\nc
+rist121,crist122,crist123,crist131,crist132,crist133,crist111,crist112
+,\ncrist113,crist211,crist212,crist213,crist221,crist222,crist223,cris
+t231,\ncrist232,crist233,crist321,crist322,crist323,crist331,crist332,
+crist333,\ncrist311,crist312,crist313,\nCrist121,Crist122,Crist123,Cri
+st131,Crist132,Crist133,Crist111,\nCrist112,Crist113,Crist211,Crist212
+,Crist213,Crist221,Crist222,\nCrist223,Crist231,Crist232,Crist233,Cris
+t321,Crist322,Crist323,\nCrist331,Crist332,Crist333,Crist311,Crist312,
+Crist313,\nX,Y,Z,x,y,z,R,Phi,r,phi,Theta, theta;   \nlocal  r_,R_1,R_2
+,R_3,r_1,r_2,r_3,e_1,e_2,e_3,E_1,E_2,l,\ng_11,g_12,g_13,g_21,g_22,g_23
+,g_31,g_32,g_33,\nG11,G12,G13,G21,G22,G23,G31,G32,G33,\nG_11,G_12,G_13
+,G_21,G_22,G_23,G_31,G_32,G_33,\nR_,\nE_3,g11,g12,g13,g21,g22,g23,g31,
+g32,g33,i,j,k,S,Ndim,`simplify/comb`;\n# \342\373\341\356\360 \352\356
+\356\360\344\350\355\340\362 \356\362\361\367\345\362\355\356\351 \352
+\356\355\364\350\343\363\360\340\366\350\350  \nif coord1='Cylindrical
+' \n   then \n        x1:=r*cos(phi):\n        x2:=r*sin(phi):\n      \+
+  x3:=z:\n        q1:=r:\n        q2:=phi:\n        q3:=z:\n    elif c
+oord1='Spherical' \n         then \n           x1:=r*cos(theta)*cos(ph
+i);\n           x2:=r*cos(theta)*sin(phi);\n           x3:=r*sin(theta
+);\n           q1:=r;\n           q2:=phi;\n           q3:=theta;\n   \+
+      elif coord1='Cartesian' \n              then\n                x1
+:=x;\n                x2:=y;\n                x3:=z;\n                \+
+q1:=x;\n                q2:=y;\n                q3:=z;\n              \+
+else ERROR(`Only Cartesian, Cylindrical and Spherical coordinates allo
+wed.`);\n    fi;\n# \342\373\341\356\360 \352\356\356\360\344\350\355
+\340\362 \362\345\352\363\371\345\351 \352\356\355\364\350\343\363\360
+\340\366\350\350  \nif coord2='Cylindrical' \n   then \n     X1:=R*cos
+(Phi):\n     X2:=R*sin(Phi):\n     X3:=Z:\n     Q1:=R:\n     Q2:=Phi:
+\n     Q3:=Z:\n     Rt:=vector(3,[R,0,Z]):\n   elif coord2='Spherical'
+ \n        then \n          X1:=R*cos(Theta)*cos(Phi);\n          X2:=
+R*cos(Theta)*sin(Phi);\n          X3:=R*sin(Theta);\n          Q1:=R;
+\n          Q2:=Phi;\n          Q3:=Theta;\n          Rt:=vector(3,[R,
+0,0]):\n       elif coord2='Cartesian' \n            then\n           \+
+   X1:=X;\n              X2:=Y;\n              X3:=Z;\n              Q
+1:=X;\n              Q2:=Y;\n              Q3:=Z;\n              Rt:=v
+ector(3,[X,Y,Z]):\n            else ERROR(`Only Cartesian, Cylindrical
+ and Spherical coordinates allowed.`);\nfi;\n#  \360\340\344\350\363
+\361-\342\345\352\362\356\360\373\n    R_:=vector(3):\n     for i from
+ 1  to 3\n    do R_[i]:=X||i: od:\n       r_:=vector(3):\n        for \+
+i from 1 to 3\n        do r_[i]:=x||i: od:\n# \352\340\361\340\362\345
+\353\374\355\373\345 \352 \352\356\356\360\344\350\355\340\362\355\373
+\354 \353\350\355\350`a\354\n     for i from 1 to 3\n        do R_||i:
+=vector(3):\n              r_||i:=vector(3):\n        for j from 1 to \+
+3 \n          do R_||i[j]:=diff(R_[j],Q||i):\n                r_||i[j]
+:=diff(r_[j],q||i):\n          od:\n      od:\n# \352\356\375\364\364
+\350\366\350\345\355\362\373 \313a\354\345\n    h1:='h1':h2:='h2':h3:=
+'h3':\n    H1:='H1':H2:='H2':H3:='H3':\n    for i from 1 to 3\n       \+
+do \n         assume(h||i>0):assume(H||i>0):\n         H||i:=simplify(
+ \n               simplify(sqrt(dotprod(R_||i,R_||i, 'orthogonal')),tr
+ig), sqrt, symbolic):\n         h||i:=simplify( \n               simpl
+ify(sqrt(dotprod(r_||i,r_||i, 'orthogonal')),trig), sqrt, symbolic):\n
+      od:\n#  \356\360\362\356\355\356\360\354\350\360\356\342\340\355
+\355\373\345 \341\340\347\350\361\355\373\345 \342\345\352\362\356\360
+\373 \n      for i from 1 to 3\n       do  E_||i:=vector(3):\n        \+
+ e_||i:=vector(3):\n         for j from 1 to 3\n          do E_||i[j]:
+=R_||i[j]/H||i:\n               e_||i[j]:=r_||i[j]/h||i:\n         od:
+\n      od: \n#  \354\340\362\360\350\366\340 \357\345\360\345\365\356
+\344\340 \n      `simplify/comb`:=proc(expr)  \n                      \+
+      RETURN(combine(expr,trig))\n                       end:\n      M
+_eE:=matrix(3,3):\n      for S from 1 to 3 do\n       for k from 1 to \+
+3 do  \n       M_eE[S,k]:=simplify(multiply(transpose(E_||S),e_||k),co
+mb):  od od:\n#   \361\350\354\342\356\353\373 \312\360\350\361\362
+\356\364\364\345\353`a 2-\343\356 \360\356\344\340\n     for i from 1 \+
+to 3 do\n      for j from 1 to 3 do \n        if i=j then g||i||j:=h||
+i^2;g_||i||j:=1/g||i||j:\n        else g||i||j:=0; g_||i||j:=0: fi\n  \+
+          od\n               od;\n     for l from 1 to 3 do\n      for
+ i from 1 to 3 do \n         for j from 1 to 3 do\n            crist||
+l||i||j:=0; \n            for k from 1 to 3 do\n              crist||l
+||i||j:=crist||l||i||j+g_||k||l*diff(g||k||j,q||i)+g_||k||l*diff(g||i|
+|k,q||j)-\n                             g_||k||l*diff(g||i||j,q||k); o
+d;\n            crist||l||i||j:=crist||l||i||j/2:\n         od \n     \+
+  od\n     od:\n \n     for i from 1 to 3 do\n      for j from 1 to 3 \+
+do \n        if i=j then G||i||j:=H||i^2;G_||i||j:=1/G||i||j:\n       \+
+ else G||i||j:=0; G_||i||j:=0: fi; \n            od\n               od
+;\n     for l from 1 to 3 do\n      for i from 1 to 3 do \n         fo
+r j from 1 to 3 do\n            Crist||l||i||j:=0; \n            for k
+ from 1 to 3 do\n              Crist||l||i||j:=Crist||l||i||j+G_||k||l
+*diff(G||k||j,Q||i)+G_||k||l*diff(G||i||k,Q||j)-\n                    \+
+         G_||k||l*diff(G||i||j,Q||k); od;\n            Crist||l||i||j:
+=Crist||l||i||j/2:\n         od \n       od\n     od:\nRETURN(`Ok`);\n
+end:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "save Coordinates,`c
+oords.m`;" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 0 "" }}}}{MARK "4 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 
+1 }{PAGENUMBERS 0 1 2 33 1 1 }
