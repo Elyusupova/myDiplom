@@ -1,19 +1,20 @@
 def forSOE (rho, y1, y2):
     t1 = -1 + beta
-    t2 = k ** 2
-    t4 = y2 ** 2
-    t8 = alpha - 0.1e1 / 0.2e1
+    t2 = rho * t1
+    t5 = alpha - 0.1e1 / 0.2e1
+    t9 = y2 ** 2
+    t10 = k ** 2
     t12 = y1 ** 2
     t14 = rho ** 2
-    t15 = 0.1e1 / t14
-    t17 = t4 * t12 * t2 * t15
+    t15 = 1 / t14
+    t17 = t9 * t12 * t10 * t15
     t19 = t17 ** (2 * alpha)
-    t23 = t4 ** 2
+    t23 = t9 ** 2
     t28 = xi ** 2
     t34 = t14 ** 2
-    t44 = t17 ** alpha
-    t52 = (alpha + 0.1e1 / 0.2e1) * beta
-    return([y2,-(2 * t1 * t2 * t4 * rho * (y2 * alpha * rho - t8 * y1) * t19 + (-t23 * y1 * beta * t2 * rho + (t2 * (beta * t14 * t28 + 1) * t12 - t34 * t28 * t1) * t4 * y2 - y1 * t2 * rho * t1) * t44 - 2 * t2 * t4 * rho * (rho * (alpha * beta + 0.1e1 / 0.2e1) * y2 - t52 * y1)) * y2 / y1 / t2 * t15 / (t1 * t8 * t4 * t19 + (-beta * t23 / 2 + 0.3e1 / 0.2e1 * beta - 0.3e1 / 0.2e1) * t44 - t52 * t4) / 2])
+    t43 = t17 ** alpha
+    t50 = alpha + 0.1e1 / 0.2e1
+    return([y2,-(2 * t2 * (y2 * alpha * rho - t5 * y1) * t9 * t10 * t19 + (-t23 * y1 * beta * t10 * rho + (t10 * (beta * t14 * t28 + 1) * t12 - t34 * t28 * t1) * t9 * y2 - y1 * t10 * t2) * t43 - 2 * rho * t9 * t10 * (rho * (alpha * beta + 0.1e1 / 0.2e1) * y2 - y1 * t50 * beta)) * y2 * t15 / (t5 * t1 * t9 * t19 + (-beta * t23 / 2 + 0.3e1 / 0.2e1 * beta - 0.3e1 / 0.2e1) * t43 - t50 * beta * t9) / t10 / y1 / 2])
 def forBC (
   ya1,
   ya2,
@@ -35,13 +36,13 @@ def forBC (
     t22 = t10 ** alpha
     t25 = ya2 ** 2
     t26 = t25 ** 2
-    t30 = yb2 ** t2
-    t32 = yb1 ** (-t5)
-    t35 = yb2 ** t15
-    t37 = yb1 ** t5
-    t40 = yb2 ** 2
-    t41 = t40 ** 2
-    return([-2 * beta * t11 * t3 * t6 * t7 - 2 * t16 * t17 * t19 * t20 * t22 + 2 * beta * t26 + 2 * beta - 2,-2 * beta * t30 * t32 * t7 - 2 * t17 * t20 * t35 * t37 + 2 * beta * t41 + 2 * beta - 2])
+    t29 = yb2 ** t2
+    t31 = yb1 ** (-t5)
+    t34 = yb2 ** t15
+    t36 = yb1 ** t5
+    t39 = yb2 ** 2
+    t40 = t39 ** 2
+    return([-beta * t11 * t3 * t6 * t7 - t16 * t17 * t19 * t20 * t22 + beta * t26 + beta - 1,-beta * t29 * t31 * t7 - t17 * t20 * t34 * t36 + beta * t40 + beta - 1])
 import math
 
 def forIntegrand (y1):
